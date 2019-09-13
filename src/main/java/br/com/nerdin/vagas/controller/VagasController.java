@@ -1,5 +1,6 @@
 package br.com.nerdin.vagas.controller;
 
+import br.com.nerdin.vagas.dto.VagaDto;
 import br.com.nerdin.vagas.model.Empresa;
 import br.com.nerdin.vagas.model.Vaga;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,9 @@ import java.util.List;
 public class VagasController {
 
     @RequestMapping("/vagas")
-    public List<Vaga> lista(){
-        Vaga vaga = new Vaga("DBA Oracle", "Vaga DBA Oracle Senior", new Empresa("ABC", "TI"));
+    public List<VagaDto> lista(){
+        Vaga vaga = new Vaga("DBA Oracle", "Vaga DBA Oracle Senior", new Empresa("ABCD", "TI"));
 
-        return Arrays.asList(vaga, vaga, vaga);
+        return VagaDto.convert(Arrays.asList(vaga, vaga, vaga));
     }
 }
