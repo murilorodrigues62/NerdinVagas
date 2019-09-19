@@ -1,17 +1,24 @@
 package br.com.nerdin.vagas.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Vaga {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
 	private String descricao;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
+	@Enumerated(EnumType.STRING)
 	private StatusVaga status = StatusVaga.ATIVA;
+	@ManyToOne
 	private Empresa empresa;
+	@OneToMany( mappedBy = "vaga")
 	private List<Candidatura> candidaturas = new ArrayList<>();
 
 	public Vaga(String titulo, String descricao, Empresa empresa) {

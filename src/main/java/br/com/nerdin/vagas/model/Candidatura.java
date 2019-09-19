@@ -1,13 +1,18 @@
 package br.com.nerdin.vagas.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class Candidatura {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String mensagem;
+	@ManyToOne
 	private Vaga vaga;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
+	@ManyToOne
 	private Candidato candidato;
 	private Boolean solucao = false;
 
