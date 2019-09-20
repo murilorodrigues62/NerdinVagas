@@ -21,12 +21,6 @@ public class Vaga {
 	@OneToMany( mappedBy = "vaga")
 	private List<Candidatura> candidaturas = new ArrayList<>();
 
-	public Vaga(String titulo, String descricao, Empresa empresa) {
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.empresa = empresa;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -14,11 +14,6 @@ public class Empresa {
 	private String nome;
 	private String descricao;
 
-	public Empresa(String nome, String descricao) {
-		this.nome = nome;
-		this.descricao = descricao;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
