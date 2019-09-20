@@ -11,10 +11,15 @@ public class VagaDto {
     private String descricao;
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
+
+
+    private String empresaNome;
+
     public VagaDto(Vaga vaga){
         this.titulo = vaga.getTitulo();
         this.descricao = vaga.getDescricao();
         this.dataCriacao = vaga.getDataCriacao();
+        this.empresaNome = vaga.getEmpresa().getNome();
     }
 
     public static List<VagaDto> convert(List<Vaga> vagas) {
@@ -33,4 +38,6 @@ public class VagaDto {
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
+
+    public String getEmpresaNome() { return empresaNome; }
 }

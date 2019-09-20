@@ -15,10 +15,21 @@ public class VagasController {
     private VagaRepository vagaRepository;
 
     @RequestMapping("/vagas")
-    public List<VagaDto> lista(){
+    public List<VagaDto> lista(String empresaNome){
 
-        // Metodo findAll importado da interface da JpaRepository
-        List<Vaga> vagas = vagaRepository.findAll();
-        return VagaDto.convert(vagas);
+        if (empresaNome == null){
+            // Metodo findAll importado da interface da JpaRepository
+            List<Vaga> vagas = vagaRepository.findAll();
+            return VagaDto.convert(vagas);
+        } else  {
+            // Spring suporta o findBy<Atributo>, desta forma ele monta query automaticamente
+            // inclusive por atributos de outras classes relacionadas findBy<Entidade><Atributo>
+            List<Vaga> vagas = vagaRepository.findByEmpresaNome(empresaNome);
+            return VagaDto.convert(vagas);
+        }
+
+
+
+
     }
 }
