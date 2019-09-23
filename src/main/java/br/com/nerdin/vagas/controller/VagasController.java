@@ -1,20 +1,26 @@
 package br.com.nerdin.vagas.controller;
 
+import br.com.nerdin.vagas.controller.form.VagaForm;
 import br.com.nerdin.vagas.dto.VagaDto;
 import br.com.nerdin.vagas.model.Vaga;
+import br.com.nerdin.vagas.repository.EmpresaRepository;
 import br.com.nerdin.vagas.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
+@RequestMapping("/vagas")
 public class VagasController {
 
     @Autowired // injeção de dependencia
     private VagaRepository vagaRepository;
 
-    @RequestMapping("/vagas")
+    @Autowired
+    private EmpresaRepository empresaRepository;
+
+    @GetMapping
     public List<VagaDto> lista(String empresaNome){
 
         if (empresaNome == null){
@@ -27,9 +33,12 @@ public class VagasController {
             List<Vaga> vagas = vagaRepository.findByEmpresaNome(empresaNome);
             return VagaDto.convert(vagas);
         }
+    }
 
-
-
+    @PostMapping // @RequestBody para pegar os dados do corpo da requisição, não da url
+    public void cadastrar(@RequestBody VagaForm form){
+        Vaga vaga = form.convert(empresaRepository);
+        vagaRepository.save(vaga);
 
     }
 }
