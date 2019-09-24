@@ -6,8 +6,11 @@ import br.com.nerdin.vagas.model.Vaga;
 import br.com.nerdin.vagas.repository.EmpresaRepository;
 import br.com.nerdin.vagas.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,9 +39,15 @@ public class VagasController {
     }
 
     @PostMapping // @RequestBody para pegar os dados do corpo da requisição, não da url
-    public void cadastrar(@RequestBody VagaForm form){
+    public ResponseEntity<VagaDto> cadastrar(@RequestBody VagaForm form, UriComponentsBuilder uriBuilder){
         Vaga vaga = form.convert(empresaRepository);
         vagaRepository.save(vaga);
+
+        // return inserted code
+        URI uri = uriBuilder.path("/vagas/{id}").buildAndExpand(vaga.getId()).toUri();
+
+        // "Created" return http code 201
+        return ResponseEntity.created(uri).body(new VagaDto(vaga));
 
     }
 }

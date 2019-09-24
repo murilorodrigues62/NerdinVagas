@@ -3,7 +3,6 @@ package br.com.nerdin.vagas.controller.form;
 import br.com.nerdin.vagas.model.Empresa;
 import br.com.nerdin.vagas.model.Vaga;
 import br.com.nerdin.vagas.repository.EmpresaRepository;
-import br.com.nerdin.vagas.repository.VagaRepository;
 
 // Form nada mais é que um DTO mas usado para receber dados via endpoint
 public class VagaForm {
