@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -38,8 +39,10 @@ public class VagasController {
         }
     }
 
-    @PostMapping // @RequestBody para pegar os dados do corpo da requisição, não da url
-    public ResponseEntity<VagaDto> cadastrar(@RequestBody VagaForm form, UriComponentsBuilder uriBuilder){
+    // @RequestBody para pegar os dados do corpo da requisição, não da url
+    // @Valid avisa o Spring para executa validações das anotações feitas na classe
+    @PostMapping
+    public ResponseEntity<VagaDto> cadastrar(@RequestBody @Valid VagaForm form, UriComponentsBuilder uriBuilder){
         Vaga vaga = form.convert(empresaRepository);
         vagaRepository.save(vaga);
 
