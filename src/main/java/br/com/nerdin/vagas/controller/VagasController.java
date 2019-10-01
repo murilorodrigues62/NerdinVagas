@@ -2,6 +2,7 @@ package br.com.nerdin.vagas.controller;
 
 import br.com.nerdin.vagas.controller.form.VagaForm;
 import br.com.nerdin.vagas.dto.VagaDto;
+import br.com.nerdin.vagas.dto.VagasDetalhesDto;
 import br.com.nerdin.vagas.model.Vaga;
 import br.com.nerdin.vagas.repository.EmpresaRepository;
 import br.com.nerdin.vagas.repository.VagaRepository;
@@ -52,5 +53,11 @@ public class VagasController {
         // "Created" return http code 201
         return ResponseEntity.created(uri).body(new VagaDto(vaga));
 
+    }
+
+    @GetMapping("/{id}") // PathVariable identifica que o parâmetro vem da url
+    public VagasDetalhesDto detalhar(@PathVariable Long id){
+        Vaga vaga = vagaRepository.getOne(id);
+        return new VagasDetalhesDto(vaga);
     }
 }

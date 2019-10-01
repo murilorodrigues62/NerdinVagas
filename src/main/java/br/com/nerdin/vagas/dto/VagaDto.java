@@ -10,9 +10,6 @@ public class VagaDto {
     private String titulo;
     private String descricao;
     private LocalDateTime dataCriacao = LocalDateTime.now();
-
-
-
     private String empresaNome;
 
     public VagaDto(Vaga vaga){
