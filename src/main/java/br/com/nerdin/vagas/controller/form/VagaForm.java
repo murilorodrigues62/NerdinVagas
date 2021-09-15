@@ -14,7 +14,7 @@ public class VagaForm {
     @NotNull @NotEmpty @Length(min = 5)
     private String descricao;
     @NotNull @NotEmpty @Length(min = 2)
-    private String nomeEmpresa;
+    private String EmpresaNome;
 
     public String getTitulo() {
         return titulo;
@@ -32,16 +32,16 @@ public class VagaForm {
         this.descricao = descricao;
     }
 
-    public String getNomeEmpresa() {
-        return nomeEmpresa;
+    public String getEmpresaNome() {
+        return EmpresaNome;
     }
 
-    public void setNomeEmpresa(String nomeEmpresa) {
-        this.nomeEmpresa = nomeEmpresa;
+    public void setEmpresaNome(String empresaNome) {
+        this.EmpresaNome = empresaNome;
     }
 
     public Vaga convert(EmpresaRepository empresaRepository) {
-        Empresa empresa = empresaRepository.findByNome(nomeEmpresa);
+        Empresa empresa = empresaRepository.findByNome(EmpresaNome);
         return new Vaga(titulo, descricao, empresa);
     }
 }

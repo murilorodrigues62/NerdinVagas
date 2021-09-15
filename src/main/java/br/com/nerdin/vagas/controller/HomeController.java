@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class HomeController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String HelloWorld(){
-        return "Hello Spring World!";
+    public String Home(){
+        return "Nerdin API is running!";
     }
 }

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 // Usando Dto para não expor diretamente no End-Point a Model com todos os campos e relacionamentos
 public class VagaDto {
+
+    private Long id;
     private String titulo;
     private String descricao;
     private LocalDateTime dataCriacao = LocalDateTime.now();
@@ -17,6 +19,7 @@ public class VagaDto {
         this.descricao = vaga.getDescricao();
         this.dataCriacao = vaga.getDataCriacao();
         this.empresaNome = vaga.getEmpresa().getNome();
+        this.id = vaga.getId();
     }
 
     public static List<VagaDto> convert(List<Vaga> vagas) {
@@ -37,4 +40,6 @@ public class VagaDto {
     }
 
     public String getEmpresaNome() { return empresaNome; }
+
+    public Long getId() { return id; }
 }
